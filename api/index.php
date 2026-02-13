@@ -424,8 +424,7 @@ $error = $_GET['error'] ?? '';
                         <span class="logo-name">Stripe</span>
                     </div>
                     <div class="logo-item">
-                        <!-- <img src="https://cdn.simpleicons.org/googlemaps/ffffff" alt="Google Maps" /> -->
-                        <img src="https://cdn.brandfetch.io/google.com?c=YOUR_CLIENT_ID" alt="Logo by Brandfetch" />
+                        <img src="https://cdn.simpleicons.org/googlemaps/ffffff" alt="Google Maps" />
                         <span class="logo-name">Google Maps</span>
                     </div>
                     <div class="logo-item">
