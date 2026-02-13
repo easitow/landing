@@ -379,7 +379,7 @@ $error = $_GET['error'] ?? '';
                         <span class="logo-name">Laravel</span>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/aws.svg" alt="AWS" />
+                        <img src="https://datf9eqtimx2sf0v.public.blob.vercel-storage.com/aws.svg" alt="AWS" />
                         <span class="logo-name">AWS</span>
                     </div>
                     <div class="logo-item">
@@ -399,7 +399,7 @@ $error = $_GET['error'] ?? '';
                         <span class="logo-name">Docker</span>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/twilio.svg" alt="Twilio" />
+                        <img src="https://datf9eqtimx2sf0v.public.blob.vercel-storage.com/twilio.svg" alt="Twilio" />
                         <span class="logo-name">Twilio</span>
                     </div>
                     <!-- Duplicate set for seamless infinite loop -->
@@ -412,7 +412,7 @@ $error = $_GET['error'] ?? '';
                         <span class="logo-name">Laravel</span>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/aws.svg" alt="AWS"/>
+                        <img src="https://datf9eqtimx2sf0v.public.blob.vercel-storage.com/aws.svg" alt="AWS"/>
                         <span class="logo-name">AWS</span>
                     </div>
                     <div class="logo-item">
@@ -433,7 +433,7 @@ $error = $_GET['error'] ?? '';
                         <span class="logo-name">Docker</span>
                     </div>
                     <div class="logo-item">
-                        <img src="../assets/twilio.svg" alt="Twilio" />
+                        <img src="https://datf9eqtimx2sf0v.public.blob.vercel-storage.com/twilio.svg" alt="Twilio" />
                         <span class="logo-name">Twilio</span>
                     </div>
                 </div>
