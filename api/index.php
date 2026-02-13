@@ -3,8 +3,7 @@ session_start();
 $csrf_token = bin2hex(random_bytes(32));
 $_SESSION['csrf_token'] = $csrf_token;
 
-$env = parse_ini_file('.env');
-$bf_id = $env["BRANDFETCH_CLIENT_ID"];
+$bf_id = getenv("BRANDFETCH_CLIENT_ID");
 
 $success = isset($_GET['success']);
 $error = $_GET['error'] ?? '';
