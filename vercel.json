@@ -1,14 +1,4 @@
 {
   "version": 2,
-  "buildCommand": "prisma generate",
-  "routes": [
-    {
-      "src": "/api/subscribe",
-      "dest": "/api/subscribe.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.html"
-    }
-  ]
+  "installCommand": "npm install && npx prisma generate"
 }
