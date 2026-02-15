@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.9.0"
-    }
-  },
+  "buildCommand": "prisma generate",
   "routes": [
     {
+      "src": "/api/subscribe",
+      "dest": "/api/subscribe.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/api/index.html"
     }
   ]
 }
