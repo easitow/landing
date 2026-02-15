@@ -1,6 +1,16 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient();
+// Singleton pattern for Prisma Client in serverless
+let prisma;
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma;
+}
 
 // Rate limiting storage (in-memory, resets on cold starts)
 const rateLimitStore = new Map();
@@ -29,10 +39,28 @@ function addRateLimit(ip) {
   rateLimitStore.set(ip, timestamps);
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle OPTIONS request for CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Check if DATABASE_URL is set
+  if (!process.env.DATABASE_URL) {
+    console.error('DATABASE_URL environment variable is not set');
+    return res.status(500).json({ 
+      error: 'Database configuration error. Please contact support.' 
+    });
   }
 
   try {
@@ -106,11 +134,14 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Error processing subscription:', error);
-    return res.status(500).json({ 
-      error: 'An error occurred. Please try again later.' 
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      meta: error.meta
     });
-  } finally {
-    // Disconnect Prisma Client (important for serverless)
-    await prisma.$disconnect();
+    return res.status(500).json({ 
+      error: 'An error occurred. Please try again later.',
+      ...(process.env.NODE_ENV === 'development' && { details: error.message })
+    });
   }
 }
